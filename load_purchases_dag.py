@@ -5,7 +5,7 @@ from gcs_to_postgres import GCSToPostgresTransfer
 
 default_args = {
   'owner' : 'jose.ramirez',
-  'depends_on_past' : False
+  'depends_on_past' : False,
   'start_date' : airflow.utils.dates.days_ago(1)
 }
 
