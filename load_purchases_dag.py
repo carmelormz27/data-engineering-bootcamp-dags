@@ -15,7 +15,6 @@ dag = DAG('dag_insert_data', default_args = default_args, schedule_interval = '@
 create_table = PostgresOperator(task_id = 'create_table',
                         sql="""
                         CREATE SCHEMA databootcamp;
-                        DROP TABLE databootcamp.user_purchase;
                         CREATE TABLE IF NOT EXISTS databootcamp.user_purchase
                         (
                             id SERIAL PRIMARY KEY,
