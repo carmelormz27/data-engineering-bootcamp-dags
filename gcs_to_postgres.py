@@ -48,9 +48,9 @@ class GCSToPostgresTransfer(BaseOperator):
     self.pg_hook = PostgresHook(postgre_conn_id = self.postgres_conn_id)
     self.gcs = GCSHook(gcp_conn_id = self.google_cloud_conn_id, delegate_to = self.delegate_to)
 
-    self.log.inf0('Executing download: %s > %s', self.bucket, self.object)
+    self.log.info('Executing download: %s > %s', self.bucket, self.object)
 
-    csvFile = gcs.download(bucket_name = self.bucket, object_name = self.object)
+    csvFile = self.gcs.download(bucket_name = self.bucket, object_name = self.object)
 
     dataSchema = {
                   'InvoiceNo': 'string',
@@ -70,7 +70,7 @@ class GCSToPostgresTransfer(BaseOperator):
       header=0,
       delimiter=",",
       quotechar='"',
-      low_memory=false,
+      low_memory=False,
       dtype=dataSchema
       )
     
