@@ -39,8 +39,8 @@ upload_data = GCSToPostgresTransfer(
               table = 'user_purchase',
               bucket = 'data-bootcamp-airflow',
               object = 'user_purchase.csv',
-              google_cloud_conn_id = '',
-              postgres_conn_id = '',
+              google_cloud_conn_id = 'google_cloud_default',
+              postgres_conn_id = 'postgres_default',
               dag = dag)
 
 create_table >> upload_data
