@@ -11,7 +11,7 @@ default_args = {
   'start_date' : airflow.utils.dates.days_ago(1)
 }
 
-dag = DAG('dag_insert_data', default_args = default_args, schedule_interval = '@daily')
+dag = DAG('dag_insert_data',default_args = default_args, schedule_interval = '@daily', dagrun_timeout = datetime.timedelta(minutes=10))
 
 #Task to create SQL table
 create_table = PostgresOperator(task_id = 'create_table',
@@ -42,7 +42,6 @@ upload_data = GCSToPostgresTransfer(
               object = 'user_purchase.csv',
               google_cloud_conn_id = 'google_cloud_default',
               postgres_conn_id = 'postgres_default',
-              dagrun_timeout = datetime.timedelta(minutes=10),
               dag = dag)
 
 create_table >> upload_data
