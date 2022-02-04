@@ -3,6 +3,8 @@ from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from gcs_to_postgres import GCSToPostgresTransfer
 
+import datetime
+
 default_args = {
   'owner' : 'jose.ramirez',
   'depends_on_past' : False,
@@ -40,6 +42,7 @@ upload_data = GCSToPostgresTransfer(
               object = 'user_purchase.csv',
               google_cloud_conn_id = 'google_cloud_default',
               postgres_conn_id = 'postgres_default',
+              dagrun_timeout = datetime.timedelta(minutes=10),
               dag = dag)
 
 create_table >> upload_data
