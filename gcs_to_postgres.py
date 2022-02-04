@@ -50,7 +50,7 @@ class GCSToPostgresTransfer(BaseOperator):
 
     self.log.info('Executing download: %s > %s', self.bucket, self.object)
 
-    csvFile = self.gcs.download(bucket_name = self.bucket, object_name = self.object)
+    csvFile = self.gcs.download(bucket_name = self.bucket, object_name = self.object).decode().decode(encoding = "utf-8", errors = "ignore")
 
     dataSchema = {
                   'InvoiceNo': 'string',
