@@ -14,8 +14,9 @@ dag = DAG('dag_insert_data', default_args = default_args, schedule_interval = '@
 #Task to create SQL table
 create_table = PostgresOperator(task_id = 'create_table',
                         sql="""
-                        DROP TABLE dbname.purchases;
-                        CREATE TABLE IF NOT EXISTS dbname.purchases
+                        CREATE SCHEMA databootcamp;
+                        DROP TABLE databootcamp.purchases;
+                        CREATE TABLE IF NOT EXISTS databootcamp.user_purchase
                         (
                             id SERIAL PRIMARY KEY,
                             invoice_number VARCHAR(10),
@@ -35,8 +36,8 @@ create_table = PostgresOperator(task_id = 'create_table',
 # Task to transfer data from GCS to Postgres DB
 upload_data = GCSToPostgresTransfer(
               task_id = 'dag_gcs_to_postgres',
-              schema = 'dbname',
-              table = 'purchases',
+              schema = 'databootcamp',
+              table = 'user_purchase',
               bucket = 'data-bootcamp-airflow',
               object = 'user_purchase.csv',
               google_cloud_conn_id = '',
