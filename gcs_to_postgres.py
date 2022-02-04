@@ -57,7 +57,6 @@ class GCSToPostgresTransfer(BaseOperator):
                   'StockCode': 'string',
                   'Description': 'string',
                   'Quantity': 'int64',
-                  'InvoiceDate': 'datetime64',
                   'UnitPrice': 'float64',
                   'CustomerID': 'int64',
                   'Country': 'string'
@@ -71,6 +70,7 @@ class GCSToPostgresTransfer(BaseOperator):
       delimiter=",",
       quotechar='"',
       low_memory=False,
+      parse_dates=date_cols,
       dtype=dataSchema
       )
     
