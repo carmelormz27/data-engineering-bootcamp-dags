@@ -51,7 +51,7 @@ create_table = PostgresOperator(task_id = 'create_table',
                             invoice_date TIMESTAMP,
                             unit_price NUMERIC(8,3),
                             customer_id INT,
-                            country VARCHAR(20)
+                            country VARCHAR(1000)
                         );
                         """,
                         postgres_conn_id= 'postgres_default', 
