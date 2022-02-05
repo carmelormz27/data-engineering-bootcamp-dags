@@ -41,7 +41,7 @@ def csv_to_postgres():
 #Task to create SQL table
 create_table = PostgresOperator(task_id = 'create_table',
                         sql="""
-                        DROP TABLE bootcampdb.products;
+                        DROP TABLE databootcamp.user_purchase;
                         CREATE TABLE IF NOT EXISTS databootcamp.user_purchase
                         (
                             id SERIAL PRIMARY KEY,
