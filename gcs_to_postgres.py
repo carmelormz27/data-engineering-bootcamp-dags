@@ -85,11 +85,11 @@ class GCSToPostgresTransfer(BaseOperator):
     self.log.info(df_purchases)
     self.log.info(df_purchases.info())
 
-    # df_purchases = df_purchases.replace(r"[\"]", r"'")
-    # list_df_purchases = df_purchases.values.tolist()
-    # list_df_purchases = [tuple(x) for x in list_df_purchases]
+    df_purchases = df_purchases.replace(r"[\"]", r"'")
+    list_df_purchases = df_purchases.values.tolist()
+    list_df_purchases = [tuple(x) for x in list_df_purchases]
 
-    # self.log.info(list_df_purchases)
+    self.log.info(list_df_purchases)
 
     # list_target_fields = ['invoice_number', 
     #                       'stock_code',
