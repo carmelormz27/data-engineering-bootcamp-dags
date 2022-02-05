@@ -45,7 +45,7 @@ create_table = PostgresOperator(task_id = 'create_table',
                         (
                             id SERIAL PRIMARY KEY,
                             invoice_number VARCHAR(10),
-                            stock_code VARCHAR(20),
+                            stock_code VARCHAR(1000),
                             detail VARCHAR(1000),
                             quantity INT,
                             invoice_date TIMESTAMP,
