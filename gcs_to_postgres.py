@@ -85,56 +85,56 @@ class GCSToPostgresTransfer(BaseOperator):
     self.log.info(df_purchases)
     self.log.info(df_purchases.info())
 
-    df_purchases = df_purchases.replace(r"[\"]", r"'")
-    list_df_purchases = df_purchases.values.tolist()
-    list_df_purchases = [tuple(x) for x in list_df_purchases]
+    # df_purchases = df_purchases.replace(r"[\"]", r"'")
+    # list_df_purchases = df_purchases.values.tolist()
+    # list_df_purchases = [tuple(x) for x in list_df_purchases]
 
-    self.log.info(list_df_purchases)
+    # self.log.info(list_df_purchases)
 
-    list_target_fields = ['invoice_number', 
-                          'stock_code',
-                          'detail', 
-                          'quantity', 
-                          'invoice_date',
-                          'unit_price',
-                          'customer_id',
-                          'country'
-                          ]
+    # list_target_fields = ['invoice_number', 
+    #                       'stock_code',
+    #                       'detail', 
+    #                       'quantity', 
+    #                       'invoice_date',
+    #                       'unit_price',
+    #                       'customer_id',
+    #                       'country'
+    #                       ]
     
-    self.current_table = self.schema + '.' + self.table
+    # self.current_table = self.schema + '.' + self.table
 
-    self.pg_hook.insert_rows(self.current_table,
-                            list_df_purchases,
-                            target_fields = list_target_fields,
-                            commit_every = 1000,
-                            replace = False)
+    # self.pg_hook.insert_rows(self.current_table,
+    #                         list_df_purchases,
+    #                         target_fields = list_target_fields,
+    #                         commit_every = 1000,
+    #                         replace = False)
 
-    self.conn = self.pg_hook.get_conn()
-    self.cursor = self.conn.cursor()
-    self.request = 'SELECT * FROM ' + self.current_table
-    self.log.info(self.request)
+    # self.conn = self.pg_hook.get_conn()
+    # self.cursor = self.conn.cursor()
+    # self.request = 'SELECT * FROM ' + self.current_table
+    # self.log.info(self.request)
 
     
-    self.cursor.execute(self.request)
-    self.sources = self.cursor.fetchall()
-    self.log.info(self.sources)
+    # self.cursor.execute(self.request)
+    # self.sources = self.cursor.fetchall()
+    # self.log.info(self.sources)
 
-    for source in self.sources:           
-            self.log.info("InvoiceNo: {0} - \
-                           StockCode: {1} - \
-                           Description: {2} - \
-                           Quantity: {3} - \
-                           InvoiceDate: {4} - \
-                           UnitPrice: {5} - \
-                           CustomerID: {6} - \
-                           Country: {7} ".format( source[0],
-                                                  source[1],
-                                                  source[2],
-                                                  source[3],
-                                                  source[4],
-                                                  source[5], 
-                                                  source[6],
-                                                  source[7]))  
+    # for source in self.sources:           
+    #         self.log.info("InvoiceNo: {0} - \
+    #                        StockCode: {1} - \
+    #                        Description: {2} - \
+    #                        Quantity: {3} - \
+    #                        InvoiceDate: {4} - \
+    #                        UnitPrice: {5} - \
+    #                        CustomerID: {6} - \
+    #                        Country: {7} ".format( source[0],
+    #                                               source[1],
+    #                                               source[2],
+    #                                               source[3],
+    #                                               source[4],
+    #                                               source[5], 
+    #                                               source[6],
+    #                                               source[7]))  
     
 
 
