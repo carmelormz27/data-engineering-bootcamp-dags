@@ -77,7 +77,7 @@ class GCSToPostgresTransfer(BaseOperator):
       header=0,
       delimiter=",",
       quotechar='"',
-      # low_memory=False,
+      low_memory=False,
       parse_dates=date_cols,
       dtype=dataSchema
       )

@@ -11,7 +11,7 @@ default_args = {
   'start_date' : airflow.utils.dates.days_ago(1)
 }
 
-dag = DAG('dag_insert_data',default_args = default_args, schedule_interval = '@daily', dagrun_timeout = datetime.timedelta(minutes=10))
+dag = DAG('dag_insert_data',default_args = default_args, schedule_interval = '@daily', dagrun_timeout = datetime.timedelta(minutes=15))
 
 #Task to create SQL table
 create_table = PostgresOperator(task_id = 'create_table',
