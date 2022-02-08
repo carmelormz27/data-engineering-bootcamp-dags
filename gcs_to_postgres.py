@@ -108,34 +108,7 @@ class GCSToPostgresTransfer(BaseOperator):
                             list_df_purchases,
                             target_fields = list_target_fields,
                             commit_every = 1000,
-                            replace = False)
-
-    self.conn = self.pg_hook.get_conn()
-    self.cursor = self.conn.cursor()
-    self.request = 'SELECT * FROM ' + self.current_table
-    self.log.info(self.request)
-
-    
-    self.cursor.execute(self.request)
-    self.sources = self.cursor.fetchall()
-    self.log.info(self.sources)
-
-    for source in self.sources:           
-            self.log.info("InvoiceNo: {0} - \
-                           StockCode: {1} - \
-                           Description: {2} - \
-                           Quantity: {3} - \
-                           InvoiceDate: {4} - \
-                           UnitPrice: {5} - \
-                           CustomerID: {6} - \
-                           Country: {7} ".format( source[0],
-                                                  source[1],
-                                                  source[2],
-                                                  source[3],
-                                                  source[4],
-                                                  source[5], 
-                                                  source[6],
-                                                  source[7]))  
+                            replace = False) 
     
 
 
