@@ -79,7 +79,7 @@ class GCSToPostgresTransfer(BaseOperator):
       delimiter=",",
       quotechar='"',
       low_memory=False,
-      #parse_dates=date_cols,
+      parse_dates=date_cols,
       dtype=dataSchema
       )
     
